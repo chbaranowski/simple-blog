@@ -1,0 +1,86 @@
+ext.gradleScriptDir     = "${rootProject.projectDir}/gradle"
+ext.sourceEncoding      = "UTF-8"
+
+ext.springVersion   = "3.2.2.RELEASE"
+ext.logbackVersion  = "1.0.11"
+
+apply plugin: "java"
+apply plugin: "war"
+
+apply from:   "${gradleScriptDir}/eclipse.gradle"
+
+sourceCompatibility = 1.6
+targetCompatibility = 1.6
+
+repositories {
+    mavenCentral()
+    maven {
+        url "http://repo.springsource.org/snapshot/"
+    }
+}
+
+configurations {
+    all*.exclude group: 'commons-logging'
+    hibernatetool
+}
+
+dependencies {
+    
+    // Java Web APIs
+    providedCompile "javax.servlet:javax.servlet-api:3.0.1",
+                    "javax.el:el-api:2.2"
+    runtime  "org.glassfish.web:el-impl:2.2",
+             "javax.servlet:jstl:1.2"
+    
+    // Spring Framework Dependencies
+    compile "org.springframework:spring-web:$springVersion",
+            "org.springframework:spring-webmvc:$springVersion",
+            "org.springframework:spring-orm:$springVersion",
+            "org.springframework:spring-aspects:$springVersion",
+            "org.springframework:spring-jdbc:$springVersion",
+            "org.springframework:spring-oxm:$springVersion"
+            
+    testCompile "org.springframework:spring-test:$springVersion"
+    
+    compile "org.springframework.data:spring-data-rest-webmvc:1.0.0.RELEASE"
+    
+    compile "org.springframework.security:spring-security-javaconfig:1.0.0.CI-SNAPSHOT"
+    compile "org.springframework.security:spring-security-taglibs:3.1.4.RELEASE"
+    
+    compile "javax.inject:javax.inject:1"
+    
+    // Spring Data and Hibernate JPA
+    compile "org.springframework.data:spring-data-jpa:1.3.1.RELEASE",
+            "org.hibernate.javax.persistence:hibernate-jpa-2.0-api:1.0.1.Final"
+    runtime "org.hibernate:hibernate-entitymanager:4.2.0.Final"
+    testCompile "org.hibernate:hibernate-entitymanager:4.2.0.Final"
+
+    // MySQL DB Driver
+    compile "mysql:mysql-connector-java:5.1.22"
+    compile "com.jolbox:bonecp:0.7.1.RELEASE"
+
+    // Jackson for JSON
+    runtime "com.fasterxml.jackson.core:jackson-databind:2.1.4"
+
+    // Spring hateoas
+    compile "org.springframework.hateoas:spring-hateoas:0.5.0.RELEASE"
+    compile "org.springframework.plugin:spring-plugin-core:0.8.0.RELEASE"
+    
+    // Logging
+    runtime "ch.qos.logback:logback-classic:${logbackVersion}"
+    runtime "org.slf4j:jcl-over-slf4j:1.7.4"
+    
+    // Testing Frameworks
+    testCompile "org.mockito:mockito-all:1.9.5"
+    testCompile "junit:junit:4.11" 
+    
+    // Web Jars
+    compile "org.webjars:bootstrap:2.3.2"
+    compile 'org.webjars:tinymce-jquery:3.4.9'
+    compile 'org.webjars:jquery:2.0.0'
+    
+    // Flyway DB Migration
+    compile "com.googlecode.flyway:flyway-core:2.1.1"
+    
+}
+    
