@@ -15,7 +15,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpConfiguration http) throws Exception {
         http
             .authorizeUrls()
-                .antMatchers("/mvc/blog/").permitAll()
+                .antMatchers("/mvc/blog").permitAll()
                 .antMatchers("/**").hasRole("ADMIN")
                 .and()
             .formLogin()
@@ -28,7 +28,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
             .logout()
                 .logoutUrl("/mvc/auth/logout")
-                .logoutSuccessUrl("/mvc/auth/login")
+                .logoutSuccessUrl("/mvc/blog")
                 .permitAll();
     }
 

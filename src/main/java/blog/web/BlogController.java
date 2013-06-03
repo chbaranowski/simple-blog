@@ -1,5 +1,6 @@
 package blog.web;
 
+import java.util.Arrays;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import blog.core.Post;
 import blog.core.PostRepository;
@@ -20,9 +22,16 @@ public class BlogController {
     @Inject
     PostRepository postRepository;
     
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public String blog(Map<String, Object> model) {
         model.put("posts", postRepository.findAll());
+        return "/blog";
+    }
+    
+    @RequestMapping(method = RequestMethod.GET, params={"postId"})
+    public String filteredBlog(@RequestParam("postId") Long postId, Map<String, Object> model) {
+    	Post findOne = postRepository.findOne(postId);
+    	model.put("posts", Arrays.asList(findOne));
         return "/blog";
     }
     
