@@ -16,6 +16,11 @@
                    <div>
                        <c:out value="${post.content}" escapeXml="false"></c:out>
                    </div>
+                   <div>
+                     <c:forEach var="tag" items="${post.tags}">
+                      <span><i class="icon-tags"></i> <c:out value="${tag.name}" /> </span>
+                     </c:forEach>
+                   </div>
                    <sec:authorize access="hasRole('ROLE_ADMIN')" >
                        <spring:url value="/mvc/blog/post/{id}/edit" var="postEditUrl">
                            <spring:param name="id" value="${post.id}" />

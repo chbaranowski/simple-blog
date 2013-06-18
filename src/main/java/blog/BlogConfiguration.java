@@ -55,6 +55,7 @@ public class BlogConfiguration {
         Flyway flyway = new Flyway();
         flyway.setDataSource(dataSource);
         flyway.migrate();
+        
         return dataSource;
     }
     
