@@ -11,7 +11,7 @@
     <div class="span8">
 
           <c:forEach var="post" items="${posts}">
-               <div>
+               <div class="post">
                    <h3><c:out value="${post.title}"></c:out></h3>
                    <div>
                        <c:out value="${post.content}" escapeXml="false"></c:out>
