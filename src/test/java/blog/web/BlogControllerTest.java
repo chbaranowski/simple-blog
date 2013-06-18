@@ -13,6 +13,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.web.servlet.ModelAndView;
 
 import blog.core.BlogService;
 import blog.core.Post;
@@ -87,6 +88,17 @@ public class BlogControllerTest {
     public void blog() throws Exception {
         mvc.perform(get("/blog"));
         verify(mockBlogService).findAll();
+    }
+    
+    @Test
+    public void newPost() throws Exception {
+        ModelAndView modelAndView = 
+                mvc.perform(get("/blog/post/new"))
+                    .andReturn().getModelAndView();
+        Object post = modelAndView.getModel().get("post");
+        assertNotNull(post);
+        Object tags = modelAndView.getModel().get("tags");
+        assertNotNull(tags);
     }
 
 }
