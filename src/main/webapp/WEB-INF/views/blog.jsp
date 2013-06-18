@@ -13,7 +13,7 @@
           <c:forEach var="post" items="${posts}">
                <div class="post">
                    <h3><c:out value="${post.title}"></c:out></h3>
-                   <div>
+                   <div class="content">
                        <c:out value="${post.content}" escapeXml="false"></c:out>
                    </div>
                    <sec:authorize access="hasRole('ROLE_ADMIN')" >
