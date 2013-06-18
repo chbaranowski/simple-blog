@@ -1,7 +1,7 @@
 ext.gradleScriptDir     = "${rootProject.projectDir}/gradle"
 ext.sourceEncoding      = "UTF-8"
 
-ext.springVersion   = "3.2.2.RELEASE"
+ext.springVersion   = "3.2.3.RELEASE"
 ext.logbackVersion  = "1.0.11"
 
 apply plugin: "java"
@@ -41,8 +41,6 @@ dependencies {
             "org.springframework:spring-oxm:$springVersion"
             
     testCompile "org.springframework:spring-test:$springVersion"
-    
-    compile "org.springframework.data:spring-data-rest-webmvc:1.0.0.RELEASE"
     
     compile "org.springframework.security:spring-security-javaconfig:1.0.0.CI-SNAPSHOT"
     compile "org.springframework.security:spring-security-taglibs:3.1.4.RELEASE"
