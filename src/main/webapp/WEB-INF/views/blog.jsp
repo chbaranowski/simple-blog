@@ -6,9 +6,9 @@
 
 <jsp:include page="fragments/head.jsp"/>
 
-<div class="row-fluid">
-	<div class="span2">&nbsp;</div>
-	<div class="span8">
+<div id="posts" class="row-fluid">
+    <div class="span2">&nbsp;</div>
+    <div class="span8">
 
           <c:forEach var="post" items="${posts}">
                <div>
