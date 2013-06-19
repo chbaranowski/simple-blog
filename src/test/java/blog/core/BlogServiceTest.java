@@ -1,40 +1,47 @@
 package blog.core;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
+import org.junit.Before;
 import org.junit.Test;
+import org.mockito.ArgumentCaptor;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 
 public class BlogServiceTest
 {
 
-  @Test
-  public void testSave()
-  {
-    fail("Not yet implemented");
+  @InjectMocks
+  BlogService blogService = new BlogService();
+  
+  @Mock
+  PostRepository postRepository;
+  
+  @Mock
+  TagRepository tagRepository;
+  
+  @Before
+  public void setup() {
+    MockitoAnnotations.initMocks(this);
   }
-
+  
   @Test
-  public void testFindTags()
+  public void save()
   {
-    fail("Not yet implemented");
-  }
-
-  @Test
-  public void testFindAll()
-  {
-    fail("Not yet implemented");
-  }
-
-  @Test
-  public void testFindById()
-  {
-    fail("Not yet implemented");
-  }
-
-  @Test
-  public void testDeleteById()
-  {
-    fail("Not yet implemented");
+    Post post = new Post();
+    post.setTitle("Title");
+    post.setContent("Content");
+    Tags tags = new Tags();
+    tags.setNames("OSGi");
+    blogService.save(post , tags);
+    
+    ArgumentCaptor<Post> postCaptor = ArgumentCaptor.forClass(Post.class);
+    verify(postRepository).save(postCaptor.capture());
+    Post savedPost = postCaptor.getValue();
+    assertEquals("Title", savedPost.getTitle());
   }
 
 }
