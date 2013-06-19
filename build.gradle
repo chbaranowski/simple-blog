@@ -1,3 +1,4 @@
+
 ext.gradleScriptDir     = "${rootProject.projectDir}/gradle"
 ext.sourceEncoding      = "UTF-8"
 
