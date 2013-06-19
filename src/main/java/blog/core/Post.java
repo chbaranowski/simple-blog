@@ -1,12 +1,16 @@
 package blog.core;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Basic;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Post implements Serializable {
@@ -22,6 +26,9 @@ public class Post implements Serializable {
 
     @Basic
     private String content;
+    
+    @ManyToMany(fetch=FetchType.EAGER)
+    private List<Tag> tags = new ArrayList<Tag>();
 
     public String getTitle() {
         return title;
@@ -45,6 +52,14 @@ public class Post implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public List<Tag> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<Tag> tags) {
+        this.tags = tags;
     }
 
 }

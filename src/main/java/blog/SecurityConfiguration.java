@@ -1,7 +1,7 @@
 package blog;
 
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.authentication.AuthenticationRegistry;
+import org.springframework.security.config.annotation.authentication.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.HttpConfiguration;
 import org.springframework.security.config.annotation.web.WebSecurityBuilder;
@@ -33,7 +33,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    protected void registerAuthentication(AuthenticationRegistry registry) throws Exception {
+    protected void registerAuthentication(AuthenticationManagerBuilder registry) throws Exception {
         registry
             .inMemoryAuthentication()
                 .withUser("admin")
@@ -47,6 +47,5 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .ignoring()
                 .antMatchers("/mvc/static/**");
     }
-    
 
 }
