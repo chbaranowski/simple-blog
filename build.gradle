@@ -17,11 +17,12 @@ repositories {
     maven {
         url "http://repo.springsource.org/snapshot/"
     }
+    
 }
 
 configurations {
     all*.exclude group: 'commons-logging'
-    hibernatetool
+    debAntTask
 }
 
 dependencies {
@@ -80,5 +81,30 @@ dependencies {
     // Flyway DB Migration
     compile "com.googlecode.flyway:flyway-core:2.1.1"
     
-}
+    debAntTask "org.vafer:jdeb:1.0.1"
     
+}
+
+task deb << {
+  ant.taskdef( name:'deb', 
+               classname:'org.vafer.jdeb.ant.DebAntTask', 
+               classpath: configurations.debAntTask.asPath)
+  // Copy control config
+  ant.copy(todir: "$buildDir/deb/control") {
+    fileset(dir: "src/deb/control")
+    filterset(begintoken:"[[", endtoken:"]]") {
+      filter(token:"version", value:"1.0.0")
+      filter(token:"description", value:"Simple Blog project")
+      filter(token:"name", value:"simple-blog")
+    }
+  }
+  // Create the deb
+  ant.deb(destfile:"$buildDir/simple-blog.deb", control: "$buildDir/deb/control") {
+    data(src: "$buildDir/libs/simple-blog.war", type:"file") {
+      mapper(type: "perm", prefix:"/var/lib/tomcat7/webapps/")
+    }
+  }
+}
+
+build.dependsOn(deb)
+
