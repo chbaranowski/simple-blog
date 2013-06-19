@@ -16,7 +16,7 @@
                    <div class="content">
                        <c:out value="${post.content}" escapeXml="false"></c:out>
                    </div>
-                   <div>
+                   <div class="tags">
                      <c:forEach var="tag" items="${post.tags}">
                       <span><i class="icon-tags"></i> <c:out value="${tag.name}" /> </span>
                      </c:forEach>
