@@ -127,6 +127,7 @@ import org.ajoberstar.gradle.git.tasks.*
 
 task branch(type: GitBranchCreate) {
   branchName = "commit-stage"
+  force      = true
 }
 
 task push(type: GitPush) {
