@@ -13,8 +13,8 @@ artifactory {
   publish {
     contextUrl = 'http://192.168.42.23:4242/artifactory/'
     repository {
-      +repoKey    = 'simple-blog-repo'
-      +username   = 'admin'
+      repoKey     = 'simple-blog-repo'
+      username    = 'admin'
       password    = 'password'
     }
   }
