@@ -19,7 +19,6 @@ repositories {
     maven {
         url "http://repo.springsource.org/snapshot/"
     }
-    
 }
 
 configurations {
@@ -85,6 +84,16 @@ dependencies {
     
     debAntTask "org.vafer:jdeb:1.0.1"
     
+}
+
+buildscript {
+  repositories {
+      mavenCentral()
+      maven { url 'http://dl.bintray.com/jfrog/jfrog-jars' }
+  }
+  dependencies {
+      classpath('org.jfrog.buildinfo:build-info-extractor-gradle:2.1.0')
+  }
 }
 
 task deb << {

@@ -1,14 +1,8 @@
-buildscript {
-  repositories {
-      mavenCentral()
-      maven { url 'http://dl.bintray.com/jfrog/jfrog-jars' }
-  }
-  dependencies {
-      classpath(group: 'org.jfrog.buildinfo', name: 'build-info-extractor-gradle', version: '2.1.0')
-  }
-}
-
 apply plugin: 'artifactory'
+
+artifacts {
+  archives file: file("$buildDir/simple-blog.deb"), name: 'simple-blog.deb'
+}
 
 artifactory {
   publish {
@@ -19,8 +13,4 @@ artifactory {
       password    = 'password'
     }
   }
-}
-
-artifacts {
-  archives file: file("$buildDir/simple-blog.deb"), name: 'simple-blog', type: 'deb', builtBy: deb
 }
