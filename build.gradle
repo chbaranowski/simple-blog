@@ -147,3 +147,5 @@ group=$project.group
 artifact=$project.name
 """
 }
+
+build.dependsOn(buildInfo)
