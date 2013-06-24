@@ -138,3 +138,12 @@ task push(type: GitPush) {
     password = 'admin'
   }
 }
+
+task buildInfo << {
+  def buildInfo = file("$buildDir/build-info.properties")
+  buildInfo.text = """\
+version=$version
+group=$project.group
+artifact=$project.name
+"""
+}
