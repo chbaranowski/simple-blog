@@ -119,3 +119,12 @@ task deb << {
 
 build.dependsOn(deb)
 
+task setupVersion << {
+  ext.env = System.getenv()
+  ext.buildId = env.BUILD_ID?.toInteger()
+  if(ext.buildId) {
+    version = version.replace('SNAPSHOT', ext.buildId)
+  }
+}
+classes.dependsOn(setupVersion)
+
