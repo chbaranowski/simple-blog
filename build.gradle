@@ -128,7 +128,7 @@ import org.ajoberstar.gradle.git.tasks.*
 task branch(type: GitBranchCreate) {
   branchName = "commit-stage"
   force      = true
-  mode       = CreateBranchCommand.SetupUpstreamMode.SET_UPSTREAM
+  mode       = GitBranchCreate.Mode.SET_UPSTREAM
 }
 
 task push(type: GitPush) {
