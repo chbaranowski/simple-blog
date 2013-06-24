@@ -141,11 +141,11 @@ task push(type: GitPush) {
 
 task buildInfo << {
   def buildInfo = file("$buildDir/build-info.properties")
-  buildInfo.text = """\
-version=$version
-group=$project.group
-artifact=$project.name
-"""
+  buildInfo.text = "version=$version"
 }
 
 build.dependsOn(buildInfo)
+
+task wrapper(type: Wrapper) {
+  gradleVersion = '1.6'
+}
