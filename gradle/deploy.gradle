@@ -1,5 +1,6 @@
 buildscript {
   repositories {
+      mavenCentral()
       maven { url 'http://dl.bintray.com/jfrog/jfrog-jars' }
   }
   dependencies {
