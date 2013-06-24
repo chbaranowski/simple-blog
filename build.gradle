@@ -95,6 +95,7 @@ buildscript {
   }
   dependencies {
       classpath('org.jfrog.buildinfo:build-info-extractor-gradle:2.1.0')
+      classpath('org.ajoberstar:gradle-git:0.6.0)
   }
 }
 

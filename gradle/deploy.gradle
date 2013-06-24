@@ -14,3 +14,16 @@ artifactory {
     }
   }
 }
+
+import org.ajoberstar.gradle.git.tasks.*
+
+task branch(type: GitBranchCreate) {
+    branchName = "commit-stage"
+}
+
+task push(type: GitPush) {
+  credentials {
+    username = 'admin'
+    password = 'admin'
+  }
+}
