@@ -130,6 +130,7 @@ task branch(type: GitBranchCreate) {
 }
 
 task push(type: GitPush) {
+  pushAll = true
   credentials {
     username = 'admin'
     password = 'admin'
