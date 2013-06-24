@@ -9,6 +9,7 @@ apply plugin: "java"
 apply plugin: "war"
 
 apply from:   "${gradleScriptDir}/eclipse.gradle"
+apply from:   "${gradleScriptDir}/deploy.gradle"
 
 sourceCompatibility = 1.6
 targetCompatibility = 1.6
