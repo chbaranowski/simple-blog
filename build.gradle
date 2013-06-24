@@ -121,7 +121,7 @@ build.dependsOn(deb)
 
 task setupVersion << {
   ext.env = System.getenv()
-  ext.buildId = env.BUILD_ID?.toInteger()
+  ext.buildId = env.BUILD_ID
   if(ext.buildId) {
     version = version.replace('SNAPSHOT', ext.buildId)
   }
