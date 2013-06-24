@@ -1,3 +1,5 @@
+ext.env = System.getenv()
+version = baseVersion + (env.BUILD_ID ? ".${env.BUILD_ID}" : "-SNAPSHOT")
 
 ext.gradleScriptDir     = "${rootProject.projectDir}/gradle"
 ext.sourceEncoding      = "UTF-8"
@@ -118,13 +120,3 @@ task deb << {
 }
 
 build.dependsOn(deb)
-
-task setupVersion << {
-  ext.env = System.getenv()
-  ext.buildId = env.BUILD_ID
-  if(ext.buildId) {
-    version = version.replace('SNAPSHOT', ext.buildId)
-  }
-}
-classes.dependsOn(setupVersion)
-
