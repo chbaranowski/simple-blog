@@ -1,4 +1,16 @@
 ext.env = System.getenv()
+
+buildscript {
+  repositories {
+      mavenCentral()
+      maven { url 'http://dl.bintray.com/jfrog/jfrog-jars' }
+  }
+  dependencies {
+      classpath('org.jfrog.buildinfo:build-info-extractor-gradle:2.1.0')
+      classpath('org.ajoberstar:gradle-git:0.6.0')
+  }
+}
+
 version = baseVersion + (env.BUILD_ID ? ".${env.BUILD_ID}" : "-SNAPSHOT")
 
 ext.gradleScriptDir     = "${rootProject.projectDir}/gradle"
@@ -88,17 +100,6 @@ dependencies {
     
 }
 
-buildscript {
-  repositories {
-      mavenCentral()
-      maven { url 'http://dl.bintray.com/jfrog/jfrog-jars' }
-  }
-  dependencies {
-      classpath('org.jfrog.buildinfo:build-info-extractor-gradle:2.1.0')
-      classpath('org.ajoberstar:gradle-git:0.6.0')
-  }
-}
-
 task deb << {
   ant.taskdef( name:'deb', 
                classname:'org.vafer.jdeb.ant.DebAntTask', 
@@ -121,3 +122,16 @@ task deb << {
 }
 
 build.dependsOn(deb)
+
+import org.ajoberstar.gradle.git.tasks.*
+
+task branch(type: GitBranchCreate) {
+  branchName = "commit-stage"
+}
+
+task push(type: GitPush) {
+  credentials {
+    username = 'admin'
+    password = 'admin'
+  }
+}
