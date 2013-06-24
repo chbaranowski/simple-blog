@@ -1,7 +1,7 @@
 apply plugin: 'artifactory'
 
 artifacts {
-  archives file: file("$buildDir/simple-blog.deb"), name: 'simple-blog.deb'
+  archives file: file("$buildDir/simple-blog-${version}.deb"), name: 'simple-blog.deb'
 }
 
 artifactory {
