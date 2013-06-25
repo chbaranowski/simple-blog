@@ -1,8 +1,8 @@
 apply plugin: 'artifactory'
 
 artifacts {
-  archives file: file("$buildDir/simple-blog-${version}.deb"), name: 'simple-blog.deb'
-  archives file: file("$projectDir/deploy.gradle"), name: 'deploy.gradle'
+  archives file: file("$buildDir/simple-blog-${version}.deb")
+  archives file: file("$projectDir/provision.gradle"), name: 'provision', type: 'gradle'
 }
 
 artifactory {
