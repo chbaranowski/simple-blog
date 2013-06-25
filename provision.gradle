@@ -1,4 +1,4 @@
-project.buildscript {
+buildscript {
   repositories {
     mavenLocal()
     maven { url "http://maven2/artifactory/all" }
