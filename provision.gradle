@@ -1,6 +1,18 @@
+project.buildscript {
+  repositories {
+    mavenLocal()
+    maven { url "http://maven2/artifactory/all" }
+  }
+  dependencies { classpath 'com.seitenbau.ploy:ploy-install-gradle:0.1.0.64' }
+}
+
+apply plugin: 'ploy-install-gradle'
+
 import com.seitenbau.ploy.install.tasks.ShellCommands
 
 task startTomcat(type: ShellCommands) {
   phase( StartTask )
   sudo("/etc/init.d/tomcat7","start")
 }
+
+
