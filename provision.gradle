@@ -1,0 +1,10 @@
+task startTomcat(type:ShellCommands) {
+  phase( StartTask )
+  sudo("/etc/init.d/tomcat7","start")
+}
+
+task stopTomcat(type:ShellCommands) {
+  phase( StopTask )
+  sudo("/etc/init.d/tomcat7","stop")
+}
+
