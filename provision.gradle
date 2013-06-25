@@ -1,15 +1,7 @@
-import com.seitenbau.ploy.install.config.*
-import com.seitenbau.ploy.install.tasks.*
-import com.seitenbau.ploy.install.shell.*
-import com.seitenbau.ploy.install.install.*
+apply plugin: 'ploy-install-gradle'
 
-task startTomcat(type:ShellCommands) {
+task startTomcat(type: com.seitenbau.ploy.install.tasks.ShellCommands) {
   phase( StartTask )
   sudo("/etc/init.d/tomcat7","start")
-}
-
-task stopTomcat(type:ShellCommands) {
-  phase( StopTask )
-  sudo("/etc/init.d/tomcat7","stop")
 }
 
