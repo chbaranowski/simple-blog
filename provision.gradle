@@ -1,10 +1,10 @@
+import com.seitenbau.ploy.install.config.*
+import com.seitenbau.ploy.install.tasks.*
+import com.seitenbau.ploy.install.shell.*
 
-ext.provision = {
+apply plugin: 'ploy-install-gradle'
 
-  task startTomcat(type: ShellCommands) {
-    phase( StartTask )
-    sudo("/etc/init.d/tomcat7","start")
-  }
-
+task startTomcat(type: ShellCommands) {
+  phase( StartTask )
+  sudo("/etc/init.d/tomcat7","start")
 }
-
