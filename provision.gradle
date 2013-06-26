@@ -1,3 +1,12 @@
+import com.seitenbau.ploy.install.config.ProcessPropertyTask
+import com.seitenbau.ploy.install.tasks.StartTask
+import com.seitenbau.ploy.install.tasks.StopTask
+import com.seitenbau.ploy.install.tasks.UninstallTask
+import com.seitenbau.ploy.install.tasks.CleanupTask
+import com.seitenbau.ploy.install.tasks.PrepareTask
+import com.seitenbau.ploy.install.tasks.InstallTask
+import com.seitenbau.ploy.install.shell.ShellCommands
+
 buildscript {
     repositories {
         maven { url "http://maven2/artifactory/all" }
@@ -8,3 +17,13 @@ buildscript {
 }
 
 apply plugin: 'ploy-install-gradle'
+
+task startTomcat(type:ShellCommands) {
+  phase( StartTask )
+  sudo("/etc/init.d/tomcat7","start")
+}
+
+task stopTomcat(type:ShellCommands) {
+  phase( StopTask )
+  sudo("/etc/init.d/tomcat7","stop")
+}
