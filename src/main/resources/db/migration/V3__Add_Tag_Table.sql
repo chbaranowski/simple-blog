@@ -1,11 +1,11 @@
-CREATE TABLE POST_TAG (
-  POSTS_ID int NOT NULL,
-  TAGS_NAME varchar(255) NOT NULL,
-  KEY FK_TAGS_NAME_KEY (TAGS_NAME),
-  KEY FK_POST_ID (POSTS_ID)
+CREATE TABLE post_tag (
+  post_id int NOT NULL,
+  tags_name varchar(255) NOT NULL,
+  KEY FK_TAGS_NAME_KEY (tags_name),
+  KEY FK_POST_ID (post_id)
 ) ENGINE=InnoDB;
 
-CREATE TABLE TAG (
-  NAME varchar(255) NOT NULL,
-  PRIMARY KEY (NAME)
+CREATE TABLE tag (
+  name varchar(255) NOT NULL,
+  PRIMARY KEY (name)
 ) ENGINE=InnoDB;

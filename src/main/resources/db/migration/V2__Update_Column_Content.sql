@@ -1,1 +1,1 @@
-alter table POST modify column CONTENT TEXT;
+alter table post modify column content TEXT;
