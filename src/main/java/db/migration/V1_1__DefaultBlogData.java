@@ -10,7 +10,7 @@ public class V1_1__DefaultBlogData implements JdbcMigration {
     @Override
     public void migrate(Connection connection) throws Exception {
         PreparedStatement insertIntoPost = connection.prepareStatement(
-                "insert into Post (content, title) values ('Hello World', 'Some Content...')");
+                "insert into POST (content, title) values ('Hello World', 'Some Content...')");
         try {
             insertIntoPost.execute();
         } finally {

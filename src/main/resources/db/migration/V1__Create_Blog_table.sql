@@ -3,4 +3,4 @@ create table POST (
     TITLE varchar(100) not null,
     CONTENT varchar(2048) not null,
     PRIMARY KEY (ID)
-) ENGINE=InnoDB;    
+) ENGINE=InnoDB;
