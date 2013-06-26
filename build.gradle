@@ -120,8 +120,8 @@ task deb << {
               prefix: "/var/lib/tomcat7/webapps/simple-blog", 
               user:   'tomcat7', 
               group:  'tomcat7',
-              filemode: 770,
-              dirmode : 770)
+              filemode: 000,
+              dirmode : 000)
     }
   }
 }
