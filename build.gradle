@@ -116,7 +116,10 @@ task deb << {
   // Create the deb
   ant.deb(destfile:"$buildDir/simple-blog-${version}.deb", control: "$buildDir/deb/control") {
     data(src: "$buildDir/libs/simple-blog-${version}.war", type:"archive") {
-      mapper(type: "perm", prefix:"/var/lib/tomcat7/webapps/simple-blog")
+      mapper( type:   "perm", 
+              prefix: "/var/lib/tomcat7/webapps/simple-blog", 
+              user:   'tomcat7', 
+              group:  'tomcat7')
     }
   }
 }
