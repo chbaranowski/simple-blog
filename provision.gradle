@@ -18,12 +18,14 @@ buildscript {
 
 apply plugin: 'ploy-install-gradle'
 
-task startTomcat(type:ShellCommands) {
+task startTomcat(type: ShellCommands) {
   phase( StartTask )
   sudo("/etc/init.d/tomcat7","start")
 }
 
-task stopTomcat(type:ShellCommands) {
+task stopTomcat(type: ShellCommands) {
   phase( StopTask )
   sudo("/etc/init.d/tomcat7","stop")
 }
+
+println System.properties['version']
