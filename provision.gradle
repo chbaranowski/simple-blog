@@ -34,7 +34,6 @@ task stopTomcat(type: ShellCommands) {
 }
 
 task downloadPackages << {
-  provisionDir.mkdirs()
   def url = "$repositoryUrl/${provisioningGroup}/${provisioningArtifact}/${provisioningVersion}/simple-blog-${provisioningVersion}.deb"
   ant.get(src: url, dest: "simple-blog-${provisioningVersion}.deb", verbose:true)
 }
