@@ -123,7 +123,7 @@ task deb << {
     }
     data(src: "$projectDir/src/deb/catalina/context.xml", type:"file") {
       mapper( type:   "perm",
-              prefix: "/etc/tomcat7/Catalina/localhost/simple-blog.xml",
+              prefix: "/etc/tomcat7/Catalina/localhost",
               user:   'tomcat7',
               group:  'tomcat7')
     }
