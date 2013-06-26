@@ -16,6 +16,11 @@ buildscript {
     }
 }
 
+ext.provisioningVersion = System.properties['version']
+ext.repositoryUrl = "http://192.168.42.23:4242/artifactory/simple/simple-blog-repo"
+ext.provisioningGroup = "simpleblog"
+ext.provisioningArtifact = "simple-blog"
+
 apply plugin: 'ploy-install-gradle'
 
 task startTomcat(type: ShellCommands) {
@@ -28,4 +33,12 @@ task stopTomcat(type: ShellCommands) {
   sudo("/etc/init.d/tomcat7","stop")
 }
 
-println System.properties['version']
+task downloadPackages << {
+  provisionDir.mkdirs()
+  def url = "$repositoryUrl/${provisioningGroup}/${provisioningArtifact}/${provisioningVersion}/simple-blog-${provisioningVersion}.deb"
+  ant.get(src: url, dest: "simple-blog-${provisioningVersion}.deb", verbose:true)
+}
+
+task installSimpleBlog(type: ShellCommands, dependsOn: 'downloadPackages') {
+  phase( InstallTask )
+}
