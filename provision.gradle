@@ -36,13 +36,13 @@ task stopTomcat(type: ShellCommands) {
 }
 
 task downloadPackages << {
-  ant.get(  src: "$projectRepositoryUrl/simple-blog-${version}.deb", 
-            dest: "simple-blog-${version}.deb")
+  ant.get(  src:  "$projectRepositoryUrl/simple-blog-${version}.deb", 
+            dest: "$projectDir/simple-blog-${version}.deb")
 }
 
 task installSimpleBlog(type: ShellCommands, dependsOn: 'downloadPackages') {
   phase( InstallTask )
-  sudo("dpkg -i simple-blog-${version}.deb")
+  sudo("dpkg -i $projectDir/simple-blog-${version}.deb")
 }
 
 task uninstallSimpleBlog(type: ShellCommands) {
