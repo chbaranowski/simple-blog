@@ -42,10 +42,10 @@ task downloadPackages << {
 
 task installSimpleBlog(type: ShellCommands, dependsOn: 'downloadPackages') {
   phase( InstallTask )
-  sudo("dpkg -i $projectDir/simple-blog-${version}.deb")
+  sudo("""dpkg -i "$projectDir/simple-blog-${version}.deb" """)
 }
 
 task uninstallSimpleBlog(type: ShellCommands) {
   phase( UninstallTask )
-  sudo("dpkg -u simple-blog")
+  sudo("dpkg -r simple-blog")
 }
