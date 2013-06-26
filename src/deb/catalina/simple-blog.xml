@@ -1,6 +1,0 @@
-<Context
-  className="org.apache.catalina.core.StandardContext"
-  docBase="/var/lib/tomcat7/webapps/simple-blog"
-  path="/simple-blog"
-  reloadable="true">
-</Context>
