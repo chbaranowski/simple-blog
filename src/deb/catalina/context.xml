@@ -1,0 +1,18 @@
+<Context
+displayName="simple-blog"
+docBase="/var/lib/tomcat7/webapps/simple-blog"
+className="org.apache.catalina.core.StandardContext"
+cachingAllowed="true"
+charsetMapperClass ="org.apache.catalina.util.CharsetMapper"
+cookies="true"
+crossContext="false"
+debug="0"
+mapperClass="org.apache.catalina.core.StandardContextMapper"
+path="/telcenter"
+privileged="false"
+reloadable="false"
+swallowOutput="false"
+useNaming="true"
+wrapperClass="org.apache.catalina.core.StandardWrapper"
+allowLinking="true">
+</Context>
