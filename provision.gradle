@@ -18,8 +18,6 @@ buildscript {
     }
 }
 
-apply plugin: 'ploy-install-gradle'
-
 task startTomcat(type: ShellCommands) {
   phase( StartTask )
   sudo("/etc/init.d/tomcat7","start")
