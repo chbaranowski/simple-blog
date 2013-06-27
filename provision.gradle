@@ -49,3 +49,9 @@ task uninstallSimpleBlog(type: ShellCommands) {
   phase( UninstallTask )
   sudo("dpkg -r simple-blog")
 }
+
+task configuration(type:ProcessPropertyTask) {
+  phase( PrepareTask )
+  configFile( "/var/lib/tomcat7/webapps/simple-blog/WEB-INF/classes/conf/application.properties", 
+              "/var/lib/tomcat7/webapps/simple-blog/WEB-INF/classes/conf/application.properties")
+}
