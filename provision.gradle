@@ -61,5 +61,5 @@ task envConfiguration(type:ProcessPropertyTask, dependsOn: 'getConfiguration') {
 
 task copyConfiguration(type: ShellCommands, dependsOn: 'envConfiguration') {
   phase( PrepareTask )
-  sudo("""cp -f "$projectDir/env-application.properties" /var/lib/tomcat7/webapps/simple-blog/WEB-INF/classes/conf/application.properties"""")
+  sudo("""cp -f "$projectDir/env-application.properties" /var/lib/tomcat7/webapps/simple-blog/WEB-INF/classes/conf/application.properties""")
 }
