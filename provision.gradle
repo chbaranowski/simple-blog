@@ -50,7 +50,7 @@ task uninstallSimpleBlog(type: ShellCommands) {
   sudo("dpkg -r simple-blog")
 }
 
-task getConfiguration(type: CopyTask) {
+task getConfiguration(type: Copy) {
   from '/var/lib/tomcat7/webapps/simple-blog/WEB-INF/classes/conf/application.properties'
   into "$projectDir/application.properties"
 }
