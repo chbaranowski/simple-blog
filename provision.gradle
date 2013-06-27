@@ -56,7 +56,7 @@ task getConfiguration(type: Copy) {
 }
 
 task envConfiguration(type:ProcessPropertyTask, dependsOn: 'getConfiguration') {
-  configFile( "application.properties", "env-application.properties")
+  configFile( "application.properties", "$projectDir/env-application.properties")
 }
 
 task copyConfiguration(type: ShellCommands, dependsOn: 'envConfiguration') {
