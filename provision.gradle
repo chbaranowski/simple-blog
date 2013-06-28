@@ -38,6 +38,8 @@ task stopTomcat(type: ShellCommands) {
 task downloadPackages << {
   ant.get(  src:  "$projectRepositoryUrl/simple-blog-${version}.deb", 
             dest: "$projectDir/simple-blog-${version}.deb")
+  ant.get(  src:  "$projectRepositoryUrl/application-${version}.properties",
+            dest: "$projectDir/application-${version}.properties")
 }
 
 task installSimpleBlog(type: ShellCommands, dependsOn: 'downloadPackages') {
@@ -50,13 +52,9 @@ task uninstallSimpleBlog(type: ShellCommands) {
   sudo("dpkg -r simple-blog")
 }
 
-task getConfiguration(type: Copy) {
-  from '/var/lib/tomcat7/webapps/simple-blog/WEB-INF/classes/conf/application.properties'
-  into "$projectDir"
-}
 
-task envConfiguration(type:ProcessPropertyTask, dependsOn: 'getConfiguration') {
-  configFile( "application.properties", "$projectDir/env-application.properties")
+task envConfiguration(type:ProcessPropertyTask) {
+  configFile( "application-${version}.properties", "$projectDir/env-application.properties")
 }
 
 task copyConfiguration(type: ShellCommands, dependsOn: 'envConfiguration') {

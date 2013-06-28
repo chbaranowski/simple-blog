@@ -3,6 +3,7 @@ apply plugin: 'artifactory'
 artifacts {
   archives file: file("$buildDir/simple-blog-${version}.deb"), name: 'simple-blog', type: 'deb'
   archives file: file("$projectDir/provision.gradle"), name: 'provision', type: 'gradle'
+  archives file: file("$projectDir/src/main/conf/application.properties"), name: 'application', type: 'properties'
 }
 
 artifactory {
