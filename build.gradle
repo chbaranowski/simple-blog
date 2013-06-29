@@ -25,6 +25,10 @@ apply plugin: "war"
 apply from:   "${gradleScriptDir}/eclipse.gradle"
 apply from:   "${gradleScriptDir}/deploy.gradle"
 
+apply plugin: VersionClass
+
+versionClass.packageName = "blog.version"
+
 sourceCompatibility = 1.6
 targetCompatibility = 1.6
 

@@ -20,6 +20,11 @@ public class BlogService {
     public void save(Post post, Tags tags) {
         String tagNamesString = tags.getNames();
         String[] tagsNames = tagNamesString.split(",");
+        save(post, tagsNames);
+    }
+    
+    @Transactional(readOnly=false)
+    public void save(Post post, String[] tagsNames) {
         for (String tagName : tagsNames) {
             tagName = tagName.trim();
             Tag tag = tagRepository.findOne(tagName);

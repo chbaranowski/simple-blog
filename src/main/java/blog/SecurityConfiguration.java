@@ -29,10 +29,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .logout()
                     .logoutUrl("/mvc/auth/logout")
                     .logoutSuccessUrl("/mvc/blog")
+                    .permitAll()
+            .and()
+                .authorizeUrls()
+                    .antMatchers("/mvc/rest/**")
+                    .permitAll()
+            .and()
+                .authorizeUrls()
+                    .antMatchers("/mvc/status")
                     .permitAll();
-        http.authorizeUrls()
-                .antMatchers("/mvc/rest/**")
-                .permitAll();
     }
     
     @Override
