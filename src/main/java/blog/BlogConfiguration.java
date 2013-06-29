@@ -1,6 +1,5 @@
 package blog;
 
-import javax.annotation.Resource;
 import javax.sql.DataSource;
 
 import org.springframework.context.annotation.Bean;
@@ -21,6 +20,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.googlecode.flyway.core.Flyway;
 import com.jolbox.bonecp.BoneCPDataSource;
+import common.EnviornmentConfiguration;
 
 @Configuration
 @ComponentScan(includeFilters = @Filter({ Service.class }), useDefaultFilters = false)
@@ -30,16 +30,18 @@ import com.jolbox.bonecp.BoneCPDataSource;
 @PropertySource("classpath:/conf/application.properties")
 public class BlogConfiguration {
     
-    @Resource
-    Environment env;
+    @Bean
+    public Config environmentConfiguration(Environment env) {
+        return EnviornmentConfiguration.configuration(env, Config.class);
+    }
     
     @Bean
-    public DataSource dataSource() {
+    public DataSource dataSource(Config config) {
         BoneCPDataSource dataSource = new BoneCPDataSource();
-        dataSource.setDriverClass(env.getProperty("db.driverClass"));
-        dataSource.setJdbcUrl(env.getProperty("db.url"));
-        dataSource.setUsername(env.getProperty("db.username"));
-        dataSource.setPassword(env.getProperty("db.password"));
+        dataSource.setDriverClass(config.dbDriverClass());
+        dataSource.setJdbcUrl(config.dbUrl());
+        dataSource.setUsername(config.dbUsername());
+        dataSource.setPassword(config.dbPassword());
         
         // Pool Settings
         dataSource.setIdleConnectionTestPeriodInMinutes(60);
@@ -60,7 +62,7 @@ public class BlogConfiguration {
     }
     
     @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource) {
         HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         vendorAdapter.setDatabase(Database.MYSQL);
         vendorAdapter.setGenerateDdl(false);
@@ -68,7 +70,7 @@ public class BlogConfiguration {
         LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
         factory.setJpaVendorAdapter(vendorAdapter);
         factory.setPackagesToScan(getClass().getPackage().getName());
-        factory.setDataSource(dataSource());
+        factory.setDataSource(dataSource);
         return factory;
     }
     

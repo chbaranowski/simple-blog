@@ -96,6 +96,9 @@ dependencies {
     // Spring REST hateoas support
     compile "org.springframework.hateoas:spring-hateoas:0.6.0.RELEASE"
     compile "org.springframework.plugin:spring-plugin-core:0.8.0.RELEASE"
+    
+    // Rest Auth handling via jasypt
+    compile "org.jasypt:jasypt:1.9.0"
 }
 
 task deb << {

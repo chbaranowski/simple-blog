@@ -16,19 +16,22 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
             .authorizeUrls()
                 .antMatchers("/mvc/blog").permitAll()
-                .antMatchers("/**").hasRole("ADMIN")
-                .and()
-            .formLogin()
-                .loginUrl("/mvc/auth/login")
-                .defaultSuccessUrl("/mvc/blog/posts")
-                .failureUrl("/mvc/auth/login")
-                .usernameParameter("user")
-                .passwordParameter("pwd")
-                .permitAll();
-        http
-            .logout()
-                .logoutUrl("/mvc/auth/logout")
-                .logoutSuccessUrl("/mvc/blog")
+                .antMatchers("/mvc/blog/**").hasRole("ADMIN")
+            .and()
+                .formLogin()
+                    .loginUrl("/mvc/auth/login")
+                    .defaultSuccessUrl("/mvc/blog/posts")
+                    .failureUrl("/mvc/auth/login")
+                    .usernameParameter("user")
+                    .passwordParameter("pwd")
+                    .permitAll()
+            .and()
+                .logout()
+                    .logoutUrl("/mvc/auth/logout")
+                    .logoutSuccessUrl("/mvc/blog")
+                    .permitAll();
+        http.authorizeUrls()
+                .antMatchers("/mvc/rest/**")
                 .permitAll();
     }
     

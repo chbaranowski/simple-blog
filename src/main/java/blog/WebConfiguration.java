@@ -2,6 +2,8 @@ package blog;
 
 import java.util.Locale;
 
+import javax.inject.Inject;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ComponentScan.Filter;
@@ -23,6 +25,9 @@ import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
+import blog.web.rest.AuthService;
+import blog.web.rest.AuthTokenHandler;
+
 @Configuration
 @ComponentScan(
   includeFilters = {
@@ -31,7 +36,10 @@ import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
   useDefaultFilters = false)
 @EnableWebMvc
 public class WebConfiguration extends WebMvcConfigurerAdapter {
-
+    
+    @Inject
+    AuthService authService;
+    
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/static/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
@@ -40,6 +48,7 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(localeChangeInterceptor());
+        registry.addInterceptor(new AuthTokenHandler(authService));
     }
     
     @Override

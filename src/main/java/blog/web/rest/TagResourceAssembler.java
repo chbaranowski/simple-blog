@@ -7,7 +7,7 @@ import blog.core.Tag;
 public class TagResourceAssembler extends ResourceAssemblerSupport<Tag, TagResource>{
 
     public TagResourceAssembler() {
-        super(BlogRestController.class, TagResource.class);
+        super(PostResourceController.class, TagResource.class);
     }
 
     @Override

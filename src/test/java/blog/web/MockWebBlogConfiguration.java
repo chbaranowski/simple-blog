@@ -13,6 +13,8 @@ import blog.WebConfiguration;
 import blog.core.BlogService;
 import blog.core.PostRepository;
 import blog.core.TagRepository;
+import blog.web.rest.AuthService;
+import blog.web.rest.EncryptorAuthService;
 
 
 @Configuration
@@ -31,6 +33,11 @@ public class MockWebBlogConfiguration extends WebConfiguration {
     @Bean
     public TagRepository tagRepository() {
         return Mockito.mock(TagRepository.class);
+    }
+    
+    @Bean
+    public AuthService authService() {
+        return Mockito.mock(AuthService.class);
     }
     
     @Bean

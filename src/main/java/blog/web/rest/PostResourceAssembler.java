@@ -12,7 +12,7 @@ public class PostResourceAssembler extends ResourceAssemblerSupport<Post, PostRe
     TagResourceAssembler tagResourceAssembler;
     
     public PostResourceAssembler() {
-        super(BlogRestController.class, PostResource.class);
+        super(PostResourceController.class, PostResource.class);
     }
 
     @Override
