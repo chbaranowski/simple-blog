@@ -36,7 +36,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .permitAll()
             .and()
                 .authorizeUrls()
-                    .antMatchers("/mvc/status")
+                    .antMatchers("/mvc/status", "/mvc/status.txt")
                     .permitAll();
     }
     

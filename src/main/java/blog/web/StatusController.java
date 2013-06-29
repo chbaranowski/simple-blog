@@ -10,19 +10,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import blog.version.VersionInfo;
 
 @Controller
-@RequestMapping("/status")
 public class StatusController {
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(value="/status", method = RequestMethod.GET)
     public String status(Map<String, Object> model) {
         model.put("version", VersionInfo.VERSION);
         model.put("buildDate", VersionInfo.BUILD_DATE);
         return "/status";
     }
     
-    @RequestMapping(method = RequestMethod.GET, produces="text/plain")
+    @RequestMapping(value="/status.txt", method = RequestMethod.GET, produces="text/plain")
     @ResponseBody
-    public String status() {
+    public String statusText() {
         StringBuilder text = new StringBuilder();
         text.append("version=");
         text.append(VersionInfo.VERSION);
