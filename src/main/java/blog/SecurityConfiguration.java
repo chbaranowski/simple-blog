@@ -1,18 +1,18 @@
 package blog;
 
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.authentication.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.web.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.HttpConfiguration;
-import org.springframework.security.config.annotation.web.WebSecurityBuilder;
-import org.springframework.security.config.annotation.web.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
-    protected void configure(HttpConfiguration http) throws Exception {
+    protected void configure(HttpSecurity http) throws Exception {
         http
             .authorizeUrls()
                 .antMatchers("/mvc/blog").permitAll()
@@ -31,7 +31,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/mvc/blog")
                 .permitAll();
     }
-
+    
     @Override
     protected void registerAuthentication(AuthenticationManagerBuilder registry) throws Exception {
         registry
@@ -42,7 +42,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
     
     @Override
-    public void configure(WebSecurityBuilder builder) throws Exception {
+    public void configure(WebSecurity builder) throws Exception {
         builder
             .ignoring()
                 .antMatchers("/mvc/static/**");

@@ -15,6 +15,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.servlet.ModelAndView;
 
+import blog.BlogConfiguration;
 import blog.core.BlogService;
 import blog.core.Post;
 import blog.core.Tags;

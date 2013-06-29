@@ -4,7 +4,6 @@ import javax.servlet.Filter;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
-import org.springframework.security.config.BeanIds;
 import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
@@ -32,7 +31,7 @@ public class ApplicationInitializer extends AbstractAnnotationConfigDispatcherSe
     
     @Override
     protected Filter[] getServletFilters() {
-        return new Filter[]{new DelegatingFilterProxy(BeanIds.SPRING_SECURITY_FILTER_CHAIN)};
+        return new Filter[]{new DelegatingFilterProxy("springSecurityFilterChain")};
     }
       
     

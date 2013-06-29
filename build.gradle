@@ -73,13 +73,6 @@ dependencies {
     compile "mysql:mysql-connector-java:5.1.22"
     compile "com.jolbox:bonecp:0.7.1.RELEASE"
 
-    // Jackson for JSON
-    runtime "com.fasterxml.jackson.core:jackson-databind:2.1.4"
-
-    // Spring hateoas
-    compile "org.springframework.hateoas:spring-hateoas:0.5.0.RELEASE"
-    compile "org.springframework.plugin:spring-plugin-core:0.8.0.RELEASE"
-    
     // Logging
     runtime "ch.qos.logback:logback-classic:${logbackVersion}"
     runtime "org.slf4j:jcl-over-slf4j:1.7.4"
@@ -96,8 +89,15 @@ dependencies {
     // Flyway DB Migration
     compile "com.googlecode.flyway:flyway-core:2.1.1"
     
+    // Deb Ant Task
     debAntTask "org.vafer:jdeb:1.0.1"
     
+    // Jackson for JSON handling in Spring WebMVC
+    runtime "com.fasterxml.jackson.core:jackson-databind:2.2.2"
+    
+    // Spring REST hateoas support
+    compile "org.springframework.hateoas:spring-hateoas:0.6.0.RELEASE"
+    compile "org.springframework.plugin:spring-plugin-core:0.8.0.RELEASE"
 }
 
 task deb << {
