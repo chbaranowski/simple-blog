@@ -1,6 +1,6 @@
 package blog.web;
 
-import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
+import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
 
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +14,6 @@ import blog.core.BlogService;
 import blog.core.PostRepository;
 import blog.core.TagRepository;
 import blog.web.rest.AuthService;
-import blog.web.rest.EncryptorAuthService;
-
 
 @Configuration
 public class MockWebBlogConfiguration extends WebConfiguration {
