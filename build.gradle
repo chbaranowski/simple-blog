@@ -103,6 +103,9 @@ dependencies {
     
     // Rest Auth handling via jasypt
     compile "org.jasypt:jasypt:1.9.0"
+    
+    // FEST assertions
+    testCompile "org.easytesting:fest-assert:1.4"
 }
 
 task deb << {

@@ -2,7 +2,7 @@ package blog.web;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.mockito.Mockito.*;
-import static org.junit.Assert.*;
+import static org.fest.assertions.Assertions.*;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -15,7 +15,6 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.servlet.ModelAndView;
 
-import blog.BlogConfiguration;
 import blog.core.BlogService;
 import blog.core.Post;
 import blog.core.Tags;
@@ -51,11 +50,11 @@ public class BlogControllerTest {
         ArgumentCaptor<Tags> tagsCaptor = ArgumentCaptor.forClass(Tags.class);
         verify(mockBlogService).save(postCaptor.capture(), tagsCaptor.capture());
         Post post = postCaptor.getValue();
-        assertEquals(id, post.getId());
-        assertEquals(title, post.getTitle());
-        assertEquals(content, post.getContent());
+        assertThat(post.getId()).isEqualTo(id);
+        assertThat(post.getTitle()).isEqualTo(title);
+        assertThat(post.getContent()).isEqualTo(content);
         Tags tags = tagsCaptor.getValue();
-        assertEquals(tag, tags.getNames());
+        assertThat(tags.getNames()).isEqualTo(tag);
     }
     
     @Test
@@ -97,9 +96,9 @@ public class BlogControllerTest {
                 mvc.perform(get("/blog/post/new"))
                     .andReturn().getModelAndView();
         Object post = modelAndView.getModel().get("post");
-        assertNotNull(post);
+        assertThat(post).isNotNull();
         Object tags = modelAndView.getModel().get("tags");
-        assertNotNull(tags);
+        assertThat(tags).isNotNull();
     }
 
 }
