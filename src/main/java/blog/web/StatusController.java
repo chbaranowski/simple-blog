@@ -23,12 +23,12 @@ public class StatusController {
     @ResponseBody
     public String statusText() {
         StringBuilder text = new StringBuilder();
-        text.append("version=");
+        text.append("version=\"");
         text.append(VersionInfo.VERSION);
-        text.append("\n");
-        text.append("buildDate=");
+        text.append("\"\n");
+        text.append("buildDate=\"");
         text.append(VersionInfo.BUILD_DATE);
-        text.append("\n");
+        text.append("\"\n");
         return text.toString();
     }
     
