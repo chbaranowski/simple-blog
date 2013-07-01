@@ -29,10 +29,10 @@ public class ApplicationInitializer extends AbstractAnnotationConfigDispatcherSe
         return new String[] { "/mvc/*" };
     }
     
-    @Override
-    protected Filter[] getServletFilters() {
-        return new Filter[]{new DelegatingFilterProxy("springSecurityFilterChain")};
-    }
+//    @Override
+//    protected Filter[] getServletFilters() {
+//        return new Filter[]{new DelegatingFilterProxy("springSecurityFilterChain")};
+//    }
       
     
 }
