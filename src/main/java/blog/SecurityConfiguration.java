@@ -15,8 +15,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
             .authorizeUrls()
-                .antMatchers("/mvc/blog").permitAll()
                 .antMatchers("/mvc/blog/**").hasRole("ADMIN")
+                .antMatchers("/mvc/blog").permitAll()
+                .antMatchers("/mvc/rest/*").permitAll()
+                .antMatchers("/mvc/status", "/mvc/status.txt").permitAll()
             .and()
                 .formLogin()
                     .loginUrl("/mvc/auth/login")
@@ -29,14 +31,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .logout()
                     .logoutUrl("/mvc/auth/logout")
                     .logoutSuccessUrl("/mvc/blog")
-                    .permitAll()
-            .and()
-                .authorizeUrls()
-                    .antMatchers("/mvc/rest/**")
-                    .permitAll()
-            .and()
-                .authorizeUrls()
-                    .antMatchers("/mvc/status", "/mvc/status.txt")
                     .permitAll();
     }
     
