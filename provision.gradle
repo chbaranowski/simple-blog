@@ -18,8 +18,8 @@ buildscript {
 }
 
 version = System.properties['version']
-
-ext.repositoryUrl = "http://192.168.42.23:4242/artifactory/simple/simple-blog-repo"
+ext.repositoryKey = System.properties['repositoryKey']
+ext.repositoryUrl = "http://192.168.42.23:4242/artifactory/simple/$repositoryKey"
 ext.provisioningGroup = "simpleblog"
 ext.provisioningArtifact = "simple-blog"
 ext.projectRepositoryUrl = "$repositoryUrl/${provisioningGroup}/${provisioningArtifact}/${version}"
