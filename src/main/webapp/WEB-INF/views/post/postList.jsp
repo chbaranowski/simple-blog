@@ -43,7 +43,7 @@
 			</tbody>
 		</table>
 
-		<a class="btn btn-primary" href="${newPost}">New Post</a>
+		<a id="newPost" class="btn btn-primary" href="${newPost}">New Post</a>
 		
 		<div id="confirmDeleteModal" class="modal hide fade" tabindex="-1">
 		  <div class="modal-header">

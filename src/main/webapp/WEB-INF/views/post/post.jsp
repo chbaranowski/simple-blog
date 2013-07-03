@@ -42,7 +42,7 @@
 			<input type="hidden" name="id" value="${id}"/>
 			<div class="control-group">
 				<div class="controls">
-					<input class="btn" type="submit" value="Save" />
+					<input class="btn" name="save" type="submit" value="Save" />
 					<spring:url value="/mvc/blog/posts" var="posts" />
 					<a href="${posts}" class="btn">Cancel</a>
 				</div>
